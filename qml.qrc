@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Page1Form.ui.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>images/fon3.jpg</file>
+        <file>images/TravaG.gif</file>
+        <file>images/kesha.gif</file>
+        <file>images/khtot.gif</file>
+        <file>images/zefir.gif</file>
+        <file>images/korotkiy_shprot.gif</file>
+        <file>images/block.png</file>
+    </qresource>
+</RCC>
