@@ -5,13 +5,12 @@
 #include <QTimer>
 #include <QTime>
 #include <QString>
-#include "blocks.h"
+#include "object.h"
 #include <QFile>
-//#include <QTextCodec>
-//#include <QTextStream>
 
-#define FIELD_SIZE_Y_BOTTOM 540
-#define FIELD_SIZE_Y_TOP 35
+constexpr qint16 FIELD_SIZE_Y_BOTTOM{540};
+constexpr qint16 FIELD_SIZE_Y_TOP{35};
+constexpr qint16 FIELD_SIZE_X{480};
 
 class GameEngine : public QObject
 {
@@ -38,8 +37,8 @@ private:
     void blocksToStartPosition();
 
 signals:
-    void sendToQml(qint32 birdY);
-    void sendToQmlMove(qint32 pic1X, qint32 pic1Y, qint32 pic2X, qint32 pic2Y, qint32 pic3X, qint32 pic3Y);
+    void sendToQml(qint16 birdY);
+    void sendToQmlMove(qint16 pic1X, qint16 pic1Y, qint16 pic2X, qint16 pic2Y, qint16 pic3X, qint16 pic3Y);
     void gameOver(QString newHighscore);
     void splash();
     void newScore(QString new_score);

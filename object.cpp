@@ -1,9 +1,9 @@
-#include "blocks.h"
+#include "object.h"
 
-Object::Object(int xLeft, int yOfTop): xLeft(xLeft),
-                                       xRight(xLeft + BLOCKWIDTH),
-                                       yOfTop(yOfTop),
-                                       yOfBottom(yOfTop + BIRDHEIGHT * LEVEL1X)
+Object::Object(qint16 xLeft, qint16 yOfTop): xLeft(xLeft),
+                                             xRight(xLeft + BLOCKWIDTH),
+                                             yOfTop(yOfTop),
+                                             yOfBottom(yOfTop + BIRDHEIGHT * LEVEL1X)
 {
 
 }
@@ -16,11 +16,11 @@ Bird::Bird()
     yOfBottom = START_Y + BIRDHEIGHT;
 }
 
-int Object::get_xLeft(){ return xLeft; }
-int Object::get_yOfTop(){ return yOfTop; }
+qint16 Object::get_xLeft(){ return xLeft; }
+qint16 Object::get_yOfTop(){ return yOfTop; }
 
-Blocks::Blocks(int xLeft, int yOfTop) : Object(xLeft, yOfTop),
-                                        skipped(false)
+Blocks::Blocks(qint16 xLeft, qint16 yOfTop) : Object(xLeft, yOfTop),
+                                              skipped(false)
 {
 
 }
@@ -32,7 +32,6 @@ bool Blocks::outOfField()
 
 void Blocks::renew()
 {
-//    std::random_device rd;
     std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> uidx(780, 800);
     std::uniform_int_distribution<int> uidy(70, 330);
@@ -46,11 +45,11 @@ bool collision(Object& bird, Object& block)
            (bird.yOfTop <= block.yOfTop || bird.yOfBottom >= block.yOfBottom)) ? true : false;
 }
 
-bool Blocks::passed(/*Object& bird, Blocks& block*/)
+bool Blocks::passed()
 {
-    if(START_X > /*block.*/xRight && !/*block.*/skipped /*&& !block.skipped*/)
+    if(START_X > xRight && !skipped)
     {
-        /*block.*/skipped = true;
+        skipped = true;
         return true;
     }
     else
