@@ -62,8 +62,8 @@ ApplicationWindow {
             }
             exit.onClicked: { Qt.callLater(Qt.quit) }
 
-            butMit21.onClicked: { bird.source = "images/korotkiy_shprot.gif" }
-            butMit22.onClicked: { bird.source = "images/zefir.gif" }
+            butMit21.onClicked: { bird.source = "images/zefir.gif" }
+            butMit22.onClicked: { bird.source = "images/shprot.gif" }
             butMit23.onClicked: { bird.source = "images/kesha.gif" }
             butMit24.onClicked: { bird.source = "images/khtot.gif" }
         }

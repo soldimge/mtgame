@@ -5,14 +5,17 @@
 
 constexpr qint16 BIRDWIDTH{50};
 constexpr qint16 BIRDHEIGHT{35};
+constexpr qint16 BIRDUPSTEP{60};
+constexpr qint16 BIRDDOWNSTEP{2};
 constexpr qint16 BLOCKWIDTH{75};
+constexpr qint16 BLOCKSTEP{2};
 constexpr qint16 LEVEL1X{4};
 constexpr qint16 START_Y{350};
 constexpr qint16 START_X{110};
-constexpr qint16 DISTANCE_BETWEEN_BLOCKS{300};
+constexpr qint16 DISTANCE_BETWEEN_BLOCKS{260};
 constexpr qint16 DELTA{20};
-constexpr qint16 BLOCK_MIN_Y{70};
-constexpr qint16 BLOCK_MAX_Y{330};
+constexpr qint16 BLOCK_MIN_Y{90};
+constexpr qint16 BLOCK_MAX_Y{290};
 
 class Object
 {
@@ -36,7 +39,7 @@ public:
     Blocks(){}
     Blocks(qint16 xLeft, qint16 yOfTop);
     bool outOfField();
-    void renew();
+    void renew(std::uniform_int_distribution<qint16>& blockRandomY, std::uniform_int_distribution<qint16>& blockRandomX2);
     bool passed();
     friend void move(Blocks&, Blocks&, Blocks&);
 

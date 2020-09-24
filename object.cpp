@@ -30,12 +30,10 @@ bool Blocks::outOfField()
     return xRight < 0 ? true : false;
 }
 
-void Blocks::renew()
+void Blocks::renew(std::uniform_int_distribution<qint16>& blockRandomY, std::uniform_int_distribution<qint16>& blockRandomX2)
 {
     std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
-    std::uniform_int_distribution<int> uidx(780, 800);
-    std::uniform_int_distribution<int> uidy(70, 330);
-    *this = Blocks(uidx(rng), uidy(rng));
+    *this = Blocks(blockRandomX2(rng), blockRandomY(rng));
 }
 
 bool collision(Object& bird, Object& block)
@@ -58,24 +56,24 @@ bool Blocks::passed()
 
 void move(Blocks& block1, Blocks& block2, Blocks& block3)
 {
-    block1.xLeft -= 2;
-    block1.xRight -= 2;
-    block2.xLeft -= 2;
-    block2.xRight -= 2;
-    block3.xLeft -= 2;
-    block3.xRight -= 2;
+    block1.xLeft -= BLOCKSTEP;
+    block1.xRight -= BLOCKSTEP;
+    block2.xLeft -= BLOCKSTEP;
+    block2.xRight -= BLOCKSTEP;
+    block3.xLeft -= BLOCKSTEP;
+    block3.xRight -= BLOCKSTEP;
 }
 
 void Bird::down()
 {
-    yOfTop += 2;
-    yOfBottom += 2;
+    yOfTop += BIRDDOWNSTEP;
+    yOfBottom += BIRDDOWNSTEP;
 }
 
 void Bird::up()
 {
-    yOfTop -= 60;
-    yOfBottom -= 60;
+    yOfTop -= BIRDUPSTEP;
+    yOfBottom -= BIRDUPSTEP;
 }
 
 

@@ -33,6 +33,10 @@ private:
     bool gameover;
     qint32 highscore;
     QFile datafile;
+    std::uniform_int_distribution<qint16> blockRandomY;
+    std::uniform_int_distribution<qint16> blockRandomX1;
+    std::uniform_int_distribution<qint16> blockRandomX2;
+    std::uniform_int_distribution<qint16> blockRandomX3;
     void die();
     void blocksToStartPosition();
 

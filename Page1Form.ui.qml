@@ -51,10 +51,8 @@ Page {
             font.family: "Verdana"
             anchors.centerIn: parent
         }
-
         highlighted: true
         flat: false
-
     }
 
     Image {
@@ -121,12 +119,7 @@ Page {
     }
 
     Connections {
-        target: backEnd // Указываем целевое соединение
-            /* Объявляем и реализуем функцию, как параметр
-             * объекта и с имененем похожим на название сигнала
-             * Разница в том, что добавляем в начале on и далее пишем
-             * с заглавной буквы
-             * */
+        target: backEnd
             onSendToQml:
             {
                 bird.y = birdY
@@ -187,7 +180,6 @@ Page {
         speed: 0.5
         visible: true
         source: "images/TravaG.gif"
-        //        fillMode: Image.PreserveAspectFit
     }
 
     AnimatedImage{
@@ -203,7 +195,6 @@ Page {
         visible: true
 
         source: "images/zefir.gif"
-        //        fillMode: Image.PreserveAspectFit
     }
 
 
@@ -312,7 +303,7 @@ Page {
                     anchors.fill: parent
                     anchors.centerIn: butMit21
                     fillMode: Image.PreserveAspectFit
-                    source: "images/korotkiy_shprot.gif"
+                    source: "images/zefir.gif"
                     scale: 0.75
                 }
             }
@@ -329,7 +320,7 @@ Page {
                     anchors.fill: parent
                     anchors.centerIn: butMit22
                     fillMode: Image.PreserveAspectFit
-                    source: "images/zefir.gif"
+                    source: "images/shprot.gif"
                     scale: 0.75
                 }
             }
@@ -369,14 +360,5 @@ Page {
             }
         }
     }
-
-
 }
 
-
-
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:0.8999999761581421}
-}
-##^##*/

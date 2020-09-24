@@ -5,11 +5,15 @@ GameEngine::GameEngine(QObject *parent) : QObject(parent),
                                           score(0),
                                           bird(),
                                           gameover(true),
-                                          datafile("highscore.txt")
+                                          datafile("highscore.txt"),
+                                          blockRandomY(BLOCK_MIN_Y, BLOCK_MAX_Y),
+                                          blockRandomX1(FIELD_SIZE_X, FIELD_SIZE_X + DELTA),
+                                          blockRandomX2(FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS + DELTA),
+                                          blockRandomX3(FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS + DELTA)
 {
     tmr->setInterval(15);
     connect(tmr, SIGNAL(timeout()), this, SLOT(updateTime()));
-    datafile.open(QIODevice::ReadOnly);
+    datafile.open(QIODevice::ReadOnly | QIODevice::Text);
     highscore = datafile.readLine().toInt();
     datafile.close();
     blocksToStartPosition();
@@ -23,24 +27,17 @@ GameEngine::~GameEngine()
 
 void pause(qint32 ms)
 {
-    QTime dieTime= QTime::currentTime().addMSecs(ms);
-    while (QTime::currentTime() < dieTime)
+    QTime pauseEnd = QTime::currentTime().addMSecs(ms);
+    while (QTime::currentTime() < pauseEnd)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
 void GameEngine::blocksToStartPosition()
 {
     std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
-
-    std::uniform_int_distribution<int> uidx1(FIELD_SIZE_X, FIELD_SIZE_X + DELTA);
-    std::uniform_int_distribution<int> uidy(BLOCK_MIN_Y, BLOCK_MAX_Y);
-    block1 = Blocks(uidx1(rng), uidy(rng));
-
-    std::uniform_int_distribution<int> uidx2(FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS + DELTA);
-    block2 = Blocks(uidx2(rng), uidy(rng));
-
-    std::uniform_int_distribution<int> uidx3(FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS + DELTA);
-    block3 = Blocks(uidx3(rng), uidy(rng));
+    block1 = Blocks(blockRandomX1(rng), blockRandomY(rng));
+    block2 = Blocks(blockRandomX2(rng), blockRandomY(rng));
+    block3 = Blocks(blockRandomX3(rng), blockRandomY(rng));
 }
 
 void GameEngine::die()
@@ -111,11 +108,11 @@ void GameEngine::updateTime()
         emit newScore(QString::number(score));
     }
     if (block1.outOfField())
-        block1.renew();
+        block1.renew(blockRandomY, blockRandomX2);
     else if (block2.outOfField())
-        block2.renew();
+        block2.renew(blockRandomY, blockRandomX2);
     else if (block3.outOfField())
-        block3.renew();
+        block3.renew(blockRandomY, blockRandomX2);
 }
 
 void GameEngine::but_click()
