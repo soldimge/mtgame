@@ -39,21 +39,6 @@ Page {
         font.family: "Verdana"
     }
 
-    Button {
-        id: settings
-        anchors.left: startButton.left
-        anchors.right: startButton.right
-        anchors.top: startButton.bottom
-        Text {
-            color: "#1c5066"
-            text: "settings"
-            font.pointSize: 18
-            font.family: "Verdana"
-            anchors.centerIn: parent
-        }
-        highlighted: true
-        flat: false
-    }
 
     Image {
         id: block1top
@@ -359,6 +344,21 @@ Page {
                 }
             }
         }
+    }
+    Button {
+        id: settings
+        anchors.left: startButton.left
+        anchors.right: startButton.right
+        anchors.top: startButton.bottom
+        Text {
+            color: "#1c5066"
+            text: "settings"
+            font.pointSize: 18
+            font.family: "Verdana"
+            anchors.centerIn: parent
+        }
+        highlighted: true
+        flat: false
     }
 }
 
