@@ -20,7 +20,7 @@ public:
     ~GameEngine();
     Q_INVOKABLE void but_click();
     Q_INVOKABLE void restart();
-    Q_INVOKABLE QString get_highScore();
+    Q_INVOKABLE QString get_highScore() const;
     Q_INVOKABLE void start();
 
 private:

@@ -84,7 +84,7 @@ void GameEngine::restart()
     emit restartQml();
 }
 
-QString GameEngine::get_highScore()
+QString GameEngine::get_highScore() const
 {
     return QString::number(highscore);
 }

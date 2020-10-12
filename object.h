@@ -23,8 +23,8 @@ public:
     Object(){}
     Object(qint16 xLeft, qint16 yOfTop);
     friend bool collision(Object&, Object&);
-    qint16 get_xLeft();
-    qint16 get_yOfTop();
+    qint16 get_xLeft() const;
+    qint16 get_yOfTop() const;
 
 protected:
     qint16 xLeft;
@@ -38,7 +38,7 @@ class Blocks : public Object
 public:
     Blocks(){}
     Blocks(qint16 xLeft, qint16 yOfTop);
-    bool outOfField();
+    bool outOfField() const;
     void renew(std::uniform_int_distribution<qint16>& blockRandomY, std::uniform_int_distribution<qint16>& blockRandomX2);
     bool passed();
     friend void move(Blocks&, Blocks&, Blocks&);

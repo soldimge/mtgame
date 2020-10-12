@@ -16,8 +16,8 @@ Bird::Bird()
     yOfBottom = START_Y + BIRDHEIGHT;
 }
 
-qint16 Object::get_xLeft(){ return xLeft; }
-qint16 Object::get_yOfTop(){ return yOfTop; }
+qint16 Object::get_xLeft() const { return xLeft; }
+qint16 Object::get_yOfTop() const { return yOfTop; }
 
 Blocks::Blocks(qint16 xLeft, qint16 yOfTop) : Object(xLeft, yOfTop),
                                               skipped(false)
@@ -25,7 +25,7 @@ Blocks::Blocks(qint16 xLeft, qint16 yOfTop) : Object(xLeft, yOfTop),
 
 }
 
-bool Blocks::outOfField()
+bool Blocks::outOfField() const
 {
     return xRight < 0 ? true : false;
 }
