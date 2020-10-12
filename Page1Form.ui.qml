@@ -39,7 +39,6 @@ Page {
         font.family: "Verdana"
     }
 
-
     Image {
         id: block1top
         x : 480
@@ -169,7 +168,7 @@ Page {
 
     AnimatedImage{
         id: bird
-        y : 350
+        y : 350    
         anchors.left: parent.left
         anchors.leftMargin: width*2.2
         width: 50
@@ -181,7 +180,6 @@ Page {
 
         source: "images/zefir.gif"
     }
-
 
     Text {
         id: score

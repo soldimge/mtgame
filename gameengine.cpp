@@ -1,17 +1,17 @@
 #include "gameengine.h"
 
-GameEngine::GameEngine(QObject *parent) : QObject(parent),
-                                          tmr(new QTimer()),
-                                          score(0),
-                                          bird(),
-                                          gameover(true),
-                                          datafile("highscore.txt"),
-                                          blockRandomY(BLOCK_MIN_Y, BLOCK_MAX_Y),
-                                          blockRandomX1(FIELD_SIZE_X, FIELD_SIZE_X + DELTA),
-                                          blockRandomX2(FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS + DELTA),
-                                          blockRandomX3(FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS + DELTA)
+GameEngine::GameEngine(QObject *parent) : QObject{parent},
+                                          tmr{new QTimer()},
+                                          score{0},
+                                          bird{},
+                                          gameover{true},
+                                          datafile{"highscore.txt"},
+                                          blockRandomY{BLOCK_MIN_Y, BLOCK_MAX_Y},
+                                          blockRandomX1{FIELD_SIZE_X, FIELD_SIZE_X + DELTA},
+                                          blockRandomX2{FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + DISTANCE_BETWEEN_BLOCKS + DELTA},
+                                          blockRandomX3{FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS, FIELD_SIZE_X + 2 * DISTANCE_BETWEEN_BLOCKS + DELTA}
 {
-    tmr->setInterval(15);
+    tmr->setInterval(TIMERINTERVAL);
     connect(tmr, SIGNAL(timeout()), this, SLOT(updateTime()));
     datafile.open(QIODevice::ReadOnly | QIODevice::Text);
     highscore = datafile.readLine().toInt();

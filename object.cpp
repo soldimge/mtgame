@@ -1,14 +1,14 @@
 #include "object.h"
 
-Object::Object(qint16 xLeft, qint16 yOfTop): xLeft(xLeft),
+Object::Object(qint16 xLeft, qint16 yOfTop): xLeft{xLeft},
                                              xRight(xLeft + BLOCKWIDTH),
-                                             yOfTop(yOfTop),
+                                             yOfTop{yOfTop},
                                              yOfBottom(yOfTop + BIRDHEIGHT * LEVEL1X)
 {
 
 }
 
-Bird::Bird()
+Bird::Bird() : time{STIME}
 {
     xLeft = START_X;
     xRight = xLeft + BIRDWIDTH;
@@ -65,13 +65,15 @@ void move(Blocks& block1, Blocks& block2, Blocks& block3)
 }
 
 void Bird::down()
-{
-    yOfTop += BIRDDOWNSTEP;
-    yOfBottom += BIRDDOWNSTEP;
+{   
+    time += TIMERINTERVAL;
+    yOfTop = yOfTop + (GRAVITY * time * time)/2000000;
+    yOfBottom = yOfBottom + (GRAVITY * time * time)/2000000;
 }
 
 void Bird::up()
 {
+    time = STIME;
     yOfTop -= BIRDUPSTEP;
     yOfBottom -= BIRDUPSTEP;
 }

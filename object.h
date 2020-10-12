@@ -6,7 +6,9 @@
 constexpr qint16 BIRDWIDTH{50};
 constexpr qint16 BIRDHEIGHT{35};
 constexpr qint16 BIRDUPSTEP{60};
-constexpr qint16 BIRDDOWNSTEP{2};
+constexpr qint16 TIMERINTERVAL{15};
+constexpr float GRAVITY{9.81};
+constexpr qint16 STIME{500};
 constexpr qint16 BLOCKWIDTH{75};
 constexpr qint16 BLOCKSTEP{2};
 constexpr qint16 LEVEL1X{4};
@@ -49,7 +51,10 @@ private:
 
 class Bird : public Object
 {
- public:
+private:
+    qint16 time;
+
+public:
     Bird();
     void up();
     void down();
